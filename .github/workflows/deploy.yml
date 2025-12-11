@@ -26,7 +26,10 @@ jobs:
         
       - name: Build
         run: npm run build
-        
+
+      - name: Add CNAME
+        run: echo "lynav.com.br" > dist/CNAME
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
