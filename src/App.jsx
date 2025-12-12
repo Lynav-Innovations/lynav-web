@@ -1,15 +1,37 @@
 import React, { useState } from 'react';
 import BackgroundAnimation from './BackgroundAnimation';
-import './App.css'; // Importando o CSS global aqui
+import './App.css'; 
+
+// Importando ícones (adicionei o FaCheckCircle)
+import { FaInstagram, FaLinkedin, FaWhatsapp, FaCheckCircle } from 'react-icons/fa';
 
 function App() {
   const [theme, setTheme] = useState('dark');
   const [activeModal, setActiveModal] = useState(null);
+  
+  // --- NOVO STATE PARA O TOAST ---
+  const [showToast, setShowToast] = useState(false);
 
   const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
   const scrollToPortfolio = () => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
   const openModal = (type) => setActiveModal(type);
   const closeModal = () => setActiveModal(null);
+
+  // --- FUNÇÃO DE ENVIO FAKE ---
+  const handleSendMessage = (e) => {
+    e.preventDefault(); // Impede o reload da página
+    
+    // Mostra o Toast
+    setShowToast(true);
+
+    // Limpa os campos do formulário visualmente
+    e.target.reset();
+
+    // Esconde o Toast depois de 4 segundos
+    setTimeout(() => {
+      setShowToast(false);
+    }, 4000);
+  };
 
   return (
     <>
@@ -43,8 +65,6 @@ function App() {
         <section id="portfolio">
           <h2 style={{textAlign:'center', fontSize: '2.5rem', marginBottom:'3rem'}}>Conheça nossas inovações</h2>
           <div className="portfolio-grid">
-            
-            {/* CARD 1 - Stockie */}
             <div className="card">
               <div className="product-icon-box">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -65,7 +85,6 @@ function App() {
               </div>
             </div>
 
-            {/* CARD 2 - QuoteApp */}
             <div className="card">
               <div className="product-icon-box">
                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -87,7 +106,6 @@ function App() {
                 <a href="#">Ver detalhes &rarr;</a>
               </div>
             </div>
-
           </div>
         </section>
 
@@ -100,10 +118,12 @@ function App() {
               <div className="info-item"><span>&#128222;</span> (21) 99705-2093</div>
               <div className="info-item"><span>&#128205;</span> Rio de Janeiro, Brasil</div>
             </div>
-            <form onSubmit={(e) => e.preventDefault()}>
-              <div className="form-group"><input type="text" placeholder="Seu nome" /></div>
-              <div className="form-group"><input type="email" placeholder="seu@email.com" /></div>
-              <div className="form-group"><textarea rows="4" placeholder="Fale sobre seu projeto..."></textarea></div>
+            
+            {/* AQUI: Conectei a função handleSendMessage */}
+            <form onSubmit={handleSendMessage}>
+              <div className="form-group"><input type="text" placeholder="Seu nome" required /></div>
+              <div className="form-group"><input type="email" placeholder="seu@email.com" required /></div>
+              <div className="form-group"><textarea rows="4" placeholder="Fale sobre seu projeto..." required></textarea></div>
               <button className="btn-liquid" style={{width: '100%'}}>Enviar Mensagem</button>
             </form>
           </div>
@@ -117,26 +137,16 @@ function App() {
 
             <div className="footer-center">
                 <a href="https://instagram.com/navxga" target="_blank" rel="noopener noreferrer" className="social-link">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
+                    <FaInstagram size={24} />
                     <span>Instagram</span>
                 </a>
                 <a href="https://www.linkedin.com/in/lyan-navega-32243721b/" target="_blank" rel="noopener noreferrer" className="social-link">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                      <rect x="2" y="9" width="4" height="12"></rect>
-                      <circle cx="4" cy="4" r="2"></circle>
-                  </svg>
-                  <span>LinkedIn</span>
+                    <FaLinkedin size={24} />
+                    <span>LinkedIn</span>
                 </a>
                 <a href="https://wa.me/5521997052093?text=Ol%C3%A1!%20Acessei%20o%20site%20da%20Lynav%20e%20gostaria%20de%20saber%20mais%20sobre%20como%20podemos%20transformar%20meu%20neg%C3%B3cio%20com%20tecnologia%20de%20alta%20performance." target="_blank" rel="noopener noreferrer" className="social-link">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                  </svg>
-                  <span>WhatsApp</span>
+                    <FaWhatsapp size={24} />
+                    <span>WhatsApp</span>
                 </a>
             </div>
 
@@ -146,6 +156,12 @@ function App() {
             </div>
         </footer>
 
+        {/* --- TOAST NOTIFICATION COMPONENT --- */}
+        <div className={`toast ${showToast ? 'show' : ''}`}>
+           <FaCheckCircle size={20} />
+           <span>Mensagem enviada com sucesso!</span>
+        </div>
+
         {activeModal && (
             <div className="modal-overlay" onClick={closeModal}>
                 <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -154,7 +170,8 @@ function App() {
                         <button className="btn-close" onClick={closeModal}>&times;</button>
                     </div>
                     <div className="modal-body">
-                        {activeModal === 'terms' ? (
+                       {/* (Conteúdo do modal mantido igual) */}
+                       {activeModal === 'terms' ? (
                             <>
                                 <p><strong>1. Aceitação</strong><br/>Ao utilizar os serviços da Lynav Innovations, você concorda com estes termos.</p>
                                 <p><strong>2. Serviços</strong><br/>Nós fornecemos desenvolvimento de software e consultoria em inovação de alta performance.</p>

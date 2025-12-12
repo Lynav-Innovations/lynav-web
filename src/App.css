@@ -517,10 +517,9 @@ section:not(#home) {
         border-color: var(--border-light);
 }
 
-.contact-info h3 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: #fff;
+.contact-info h3 { 
+    font-size: 2rem; 
+    margin-bottom: 1rem; 
 }
 
 .contact-info p {
@@ -603,4 +602,44 @@ textarea:focus {
                 text-align: center;
                 gap: 1.5rem;
         }
+}
+
+/* --- TOAST NOTIFICATION (MENSAGEM DE SUCESSO) --- */
+.toast {
+  position: fixed;
+  top: 100px; /* Um pouco abaixo do header */
+  right: 20px;
+  background: rgba(0, 255, 136, 0.15); /* Verde Matrix translúcido */
+  border: 1px solid rgba(0, 255, 136, 0.5);
+  backdrop-filter: blur(12px);
+  padding: 15px 30px;
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  
+  /* Animação de entrada/saída */
+  transform: translateX(150%);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+/* Ajuste de cor para o ícone de check */
+.toast svg {
+  color: #00ff88;
+}
+
+/* No tema light, ajustamos a cor do texto para leitura */
+.theme-light .toast {
+  background: rgba(0, 150, 80, 0.15);
+  border-color: rgba(0, 150, 80, 0.4);
+  color: #0b3d20;
 }
