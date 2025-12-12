@@ -93,50 +93,40 @@ const styles = `
   .subtitle {
     font-size: 2.5rem;
     color: var(--primary-rose);
-    font-weight: 500;
-    margin-top: 5px;
-    margin-bottom: 2rem;
-    letter-spacing: 2px;
-  }
-
-  .hero-desc {
-    font-size: 1.2rem;
-    max-width: 600px;
-    line-height: 1.6;
-    opacity: 0.8;
-    margin-bottom: 3rem;
-  }
-
-  /* Botão Moderno */
-  .btn-cta {
-    padding: 1rem 3.5rem;
-    background: var(--primary-rose);
-    border: none;
-    color: white;
-    font-family: 'Outfit';
+    font-family: 'Outfit', sans-serif;
     font-weight: 600;
-    font-size: 1.1rem;
-    cursor: pointer;
-    border-radius: 50px; /* Botão arredondado é mais moderno que quadrado */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    /* --- EFEITO NEON AQUI --- */
+    text-shadow: 
+        0 0 5px rgba(255, 0, 85, 0.8),
+        0 0 10px rgba(255, 0, 85, 0.6),
+        0 0 20px rgba(255, 0, 85, 0.4),
+        0 0 40px rgba(255, 0, 85, 0.2);
   }
-  .btn-cta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(255, 0, 85, 0.4);
+
+  .hero-desc { font-size: 1.2rem; max-width: 600px; line-height: 1.6; opacity: 0.8; margin-bottom: 3rem; }
+
+  .btn-cta {
+    padding: 1rem 3.5rem; background: var(--primary-rose); border: none; color: white;
+    font-family: 'Outfit'; font-weight: 600; font-size: 1.1rem; cursor: pointer;
+    border-radius: 50px; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Adicionei um brilho no botão também pra combinar */
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.3);
   }
+  .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 0, 85, 0.6); }
 
   .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; width: 100%; margin-top: 3rem; }
   
   .card {
-    background: var(--glass-dark); backdrop-filter: blur(12px);
-    border: 1px solid var(--border-dark);
-    padding: 30px; border-radius: 16px; /* Bordas arredondadas */
-    transition: 0.4s ease;
+    background: var(--glass-dark); backdrop-filter: blur(12px); border: 1px solid var(--border-dark);
+    padding: 30px; border-radius: 16px; transition: 0.4s ease;
     height: 350px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden;
   }
   .theme-light .card { background: var(--glass-light); border-color: var(--border-light); }
-  
-  .card:hover { transform: translateY(-10px); border-color: var(--primary-rose); }
+  .card:hover { transform: translateY(-10px); border-color: var(--primary-rose); box-shadow: 0 5px 20px rgba(255,0,85,0.15); }
   
   .card h3 { font-size: 1.5rem; margin-bottom: 10px; }
   .card a { text-decoration: none; color: var(--primary-rose); font-weight: 600; margin-top: auto; display: inline-block; }
@@ -153,7 +143,7 @@ const styles = `
     color: inherit; font-family: 'Rajdhani'; font-size: 1.1rem; outline: none; transition: 0.3s; border-radius: 8px;
   }
   .theme-light input, .theme-light textarea { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); }
-  input:focus, textarea:focus { border-color: var(--primary-rose); background: rgba(0,0,0,0.4); }
+  input:focus, textarea:focus { border-color: var(--primary-rose); background: rgba(0,0,0,0.4); box-shadow: 0 0 10px rgba(255,0,85,0.2); }
 
   footer { text-align: center; padding: 3rem; font-size: 0.9rem; opacity: 0.6; }
   
@@ -164,7 +154,7 @@ const styles = `
   }
 `;
 
-// --- COMPONENTE DO BACKGROUND (O MESMO CÓDIGO DO SEU PREFERIDO) ---
+// --- O RESTO DO CÓDIGO PERMANECE EXATAMENTE IGUAL ---
 const ParticleBackground = ({ theme }) => {
   const canvasRef = useRef(null);
 
@@ -317,7 +307,6 @@ const ParticleBackground = ({ theme }) => {
   return <canvas ref={canvasRef} id="canvas-bg"></canvas>;
 };
 
-// --- APP PRINCIPAL ---
 function App() {
   const [theme, setTheme] = useState('dark');
   const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -338,13 +327,11 @@ function App() {
 
         <section id="home">
           <div className="hero-content">
-            {/* Título Centralizado, Sem Glitch, Fonte Nova */}
             <h1 className="main-title">Lynav</h1>
             <h2 className="subtitle">Innovations</h2>
             
             <p className="hero-desc">
               De automações RPA complexas a ecossistemas Full-Stack escaláveis. Transformamos lógica de negócios em software de alta performance.
-
             </p>
             <button className="btn-cta" onClick={() => document.getElementById('contact').scrollIntoView()}>
               Iniciar Projeto
@@ -353,21 +340,37 @@ function App() {
         </section>
 
         <section id="portfolio">
-          <h2 style={{textAlign:'center', fontSize: '2.5rem'}}>Portfólio Selecionado</h2>
+          <h2 style={{textAlign:'center', fontSize: '2.5rem', marginBottom:'3rem'}}>Conheça nossas inovações</h2>
           <div className="portfolio-grid">
-            {[1, 2, 3].map((item) => (
-              <div className="card" key={item}>
-                <div style={{
-                    width:'100%', height:'150px', background:'linear-gradient(45deg, #222, #111)', 
-                    borderRadius:'8px', marginBottom:'20px', opacity:0.6
-                }}></div>
-                <div>
-                  <h3>Projeto Cyber {item}</h3>
-                  <p style={{marginBottom: '15px', fontSize: '1rem', opacity: 0.7}}>UX/UI / Development</p>
-                  <a href="#">Ver detalhes &rarr;</a>
-                </div>
+            <div className="card">
+              <div style={{
+                width:'100%', height:'150px', background:'linear-gradient(45deg, #222, #111)', 
+                borderRadius:'8px', marginBottom:'20px', opacity:0.6
+              }}></div>
+              <div>
+                <h3>Stockie</h3>
+                <p style={{marginBottom: '15px', fontSize: '1rem', opacity: 0.7}}>
+                  Stockie é o seu painel de controle definitivo para a gestão de estoque e finanças. Pare de adivinhar o que tem na prateleira. Saiba exatamente quanto você ganhou, quanto perdeu e qual produto está impulsionando seu negócio, em tempo real e com design que funciona para você.
+                </p>
+                <a href="https://stockie.com.br" target="_blank">Ver detalhes &rarr;</a>
               </div>
-            ))}
+            </div>
+            <div className="card">
+              <div style={{
+                width:'100%', height:'150px', background:'linear-gradient(45deg, #222, #111)', 
+                borderRadius:'8px', marginBottom:'20px', opacity:0.6
+              }}></div>
+              <div>
+                <h3>QuoteApp</h3>
+                <p style={{marginBottom: '15px', fontSize: '1rem', opacity: 0.7}}>
+                  Quote App é o seu estúdio de orçamentos no bolso. 
+                  Transforme a burocracia de criar propostas em segundos. 
+                  Gerencie cada pedido, gere PDFs padronizados instantaneamente com o design limpo e o logotipo da sua empresa.
+                  Elimine erros e garanta a melhor primeira impressão.
+                </p>
+                <a href="#">Ver detalhes &rarr;</a>
+              </div>
+            </div>
           </div>
         </section>
 
