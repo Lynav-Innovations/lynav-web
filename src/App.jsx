@@ -132,7 +132,7 @@ function App() {
         <footer className="footer-glass">
             <div className="footer-left">
                 <div className="logo" style={{fontSize: '1.2rem', marginBottom:'5px'}}>Lynav <span>.</span></div>
-                <p>© 2024 Lynav Innovations. Todos os direitos reservados.</p>
+                <p>© 2025 Lynav Innovations. Todos os direitos reservados.</p>
             </div>
 
             <div className="footer-center">
