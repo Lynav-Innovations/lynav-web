@@ -51,7 +51,7 @@ function App() {
             <h1 className="main-title">Lynav</h1>
             <h2 className="subtitle">Innovations</h2>
             <p className="hero-desc">
-              De automações RPA complexas a ecossistemas Full-Stack escaláveis. Transformamos lógica de negócios em software de alta performance.
+              De automações RPA complexas a ecossistemas Full-Stack escaláveis. Inovando lógica de negócios em software de alta performance.
             </p>
             <button className="btn-liquid" onClick={() => document.getElementById('contact').scrollIntoView()}>
               Iniciar Projeto
@@ -136,7 +136,7 @@ function App() {
             </div>
 
             <div className="footer-center">
-                <a href="https://instagram.com/navxga" target="_blank" rel="noopener noreferrer" className="social-link">
+                <a href="https://instagram.com/lynav.innovations" target="_blank" rel="noopener noreferrer" className="social-link">
                     <FaInstagram size={24} />
                     <span>Instagram</span>
                 </a>
