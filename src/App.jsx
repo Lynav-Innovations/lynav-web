@@ -114,7 +114,7 @@ function App() {
             <div className="contact-info">
               <h3>Vamos construir o futuro?</h3>
               <p>Estamos prontos para levar sua operação para o próximo nível. Preencha o formulário ou entre em contato direto.</p>
-              <div className="info-item"><span>&#9993;</span> contact@lynav.com</div>
+              <div className="info-item"><span>&#9993;</span> contact@lynav.com.br</div>
               <div className="info-item"><span>&#128222;</span> (21) 99705-2093</div>
               <div className="info-item"><span>&#128205;</span> Rio de Janeiro, Brasil</div>
             </div>
